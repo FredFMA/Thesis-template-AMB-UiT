@@ -214,7 +214,7 @@
 
 \end{document}
 
-%trying to provoke conflict further to whats there
-%trying to provoke conflict
-%trying to provoke conflict now something elsse
-
+%Tip to avoid flooding of aux files: Add these to replace pdflatex and bibtex commands in "commands" under Options->configure TeXstudio->commands
+%pdflatex.exe -synctex=1 -interaction=nonstopmode  --aux-directory=build %.tex
+%bibtex.exe build/% -include-directory=build
+%then do tools->clean auxiliary files ->ok (add gz and xml to list)
