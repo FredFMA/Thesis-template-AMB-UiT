@@ -1,0 +1,217 @@
+%Defining document parameters
+\documentclass[twoside, 12pt]{article} %Document type
+\usepackage[document]{ragged2e}% right justify text
+
+\usepackage[english]{babel} %Used to specify language
+\usepackage[utf8]{inputenc} %Format encoding
+\usepackage{amsmath} %For math typing
+\usepackage{mathptmx} %Sets times new roman clone font
+
+\usepackage{graphicx} %required to insert graphics
+\graphicspath{{./TeX_files/Graphix/}} %path you your images folder
+
+\usepackage{subcaption}
+\usepackage{wrapfig} %Textwrapped graphics
+\usepackage{float} %For specifying image placement
+\usepackage{geometry} %To set dimensions for page layout in LATEX
+\usepackage{lipsum} %To generate lipsum text
+
+%IMPORTANT: Reference section definitions
+\usepackage[backend=bibtex, style=authoryear-comp, url=false]{biblatex} %style and defs, Backend fix for biblatex
+\addbibresource{./TeX_files/library} %your .bib resource: change to your lib name
+\usepackage{textcomp}
+\usepackage{varioref}
+\usepackage[]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+	colorlinks,
+	linkcolor={blue!25!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}}
+\usepackage{cleveref}
+\Crefname{figure}{Fig.}{Figs.}% {<type>}{<singular>}{<plural>}
+
+\usepackage{pdfpages} %to insert pdf files
+\usepackage{setspace} % line spacing
+\usepackage{eso-pic} %Image handling package
+\usepackage{multicol} %To create multi columns
+\usepackage{fancyhdr} %page style package
+\usepackage{gensymb} %Generic symbols for both text and math mode
+%\usepackage{adjustbox} %front page boxes package
+%\usepackage{epigraph} %for typesetting epigraphs
+%\usepackage{microtype} %Subliminal refinements towards typographical perfection
+%\usepackage{ccaption} %A package providing commands for 'continuation captions' etc when using large figures
+%\usepackage{afterpage} %Execute command after the next page break.
+
+%Custom Document definitions and fixes
+\newcommand\blankpage{ %blank page fix
+	\null
+	\pagestyle{plain}%
+	\addtocounter{page}{-1}%
+	\newpage
+	}
+
+\pagestyle{fancy} %header and footer definitions
+\fancyhf{}
+\rhead{\footnotesize{\rightmark}}
+\lhead{\footnotesize{\leftmark}}
+\rfoot{ \thepage}
+\pagenumbering{Roman}
+\geometry{paper=a4paper, inner=2cm, outer=3cm, top=2.5cm,bottom=2.5cm} %Margin setup
+\renewcommand{\baselinestretch}{1.5}	%Line spacing
+
+%%%%Abbreviation shortcut definitions: Change to your needs
+\newcommand{\RRmax}{$RR_{max}$ }
+\newcommand{\TBAT}{$T_{BAT}$ }
+\newcommand{\TB}{$T_{b}$ }
+
+%\DeclareUnicodeCharacter{2212}{-} %Reference bug fixes- may not be required
+%\DeclareUnicodeCharacter{0301}{\'{e}}
+
+
+
+%Document begins here
+%Front page -------------------------------------------------------
+\begin{document}
+\begin{titlepage} %title page setup - change to your needs
+
+\newgeometry{top=1.cm,bottom=0cm,right=2.5cm,left=2.5cm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\begin{figure}
+	\vspace{-0pt}
+	\hspace{-50pt}
+\includegraphics[width=0.8\linewidth]{Graphix/UiT_logo} %Top logo
+\end{figure}
+
+\vspace{-.5cm}
+		\noindent\textsc{Faculty of Biosciences, Fisheries \& Economics}\\[0.0cm]
+		\noindent\textsc{Department of Arctic \& Marine biology}\\[.5cm] 
+
+		{\noindent \large \bfseries Title of thesis }\\[0.4cm] % Title of your document
+		\textsc{Author}\\
+		\textsc{Course code, assignment info etc}
+		\vspace{1cm}
+
+\begin{centering}
+	\hspace{-2.6cm} %ignore warning
+	\vspace{0.5cm}
+	\includegraphics[width=1.330\linewidth]{Graphix/Front_graphic} %change params to your needs
+\end{centering}
+
+
+\blankpage
+
+
+\vspace*{2cm} %adjust to meet needs
+\begin{centering} %secondary front page 
+
+	\textsc{\LARGE UiT - Arctic University of Norway}\\
+	\textsc{\LARGE Secondary affiliations}\\[1.5cm]% Name of university, copy paste for more
+
+\textsc{ Bio-3950 \small(60 ECTS)}\\
+\textsc{\Large Master's thesis in biology}\\[0.5cm] % Major heading such as course name
+\textsc{\large Faculty of Biosciences, Fisheries and Economics \\
+	Department of arctic and marine biology}\\[0.5cm] %Department or institute
+
+\HRule \\[0.4cm]
+	{\noindent \large \bfseries Thesis title }\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%Authors section
+
+\begin{minipage}[t]{0.4\textwidth}
+	\begin{flushleft} \large
+		\emph{Author:}\\
+		Names \textsc{Surnames}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+	\begin{flushright} \large
+		\emph{Supervisors:} \\
+		Name \textsc{Surname}\\
+		Name \textsc{Surname}\\
+		Name\textsc{Surname}
+	\end{flushright}
+\end{minipage}\\[3cm]
+
+\begin{center}
+	\includegraphics[width=\linewidth]{Graphix/uit_inci} %sponsor stamps etc change to your needs
+\end{center}
+
+
+
+
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+\vfill
+\end{centering}
+
+\end{titlepage}
+
+%Acknowledgements
+\thispagestyle{plain}
+\setcounter{page}{3}
+\vspace*{1cm}
+\begin{centering}
+	\section*{Acknowledgements}
+\lipsum[2-4]
+
+\end{centering}
+
+\vspace*{3cm}
+
+\begin{flushright}
+%	\includegraphics[width=0.3\linewidth]{Signature}\\ % insert signature image here
+	Name\\
+	Tromsø, \today
+\end{flushright}
+\vspace*{\fill}
+\newpage
+
+
+%Abstract section, Change the lipsum code to your abstract.
+\thispagestyle{plain}
+\setstretch{1.3}
+\include{./TeX_files/abstract}
+
+
+%Table of contents section.
+\thispagestyle{plain}
+\setstretch{1.2}
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+\thispagestyle{plain}
+\listoffigures
+\newpage
+\thispagestyle{plain}
+\listoftables
+
+%Now introduction begins, edit introduction .tex file-------------------------------------------
+\setstretch{1.5}
+\pagenumbering{arabic}
+\setcounter{page}{8} % renumerate to your needs
+
+%the files:
+\include{./TeX_files/Introduction}
+\include{./TeX_files/Methods}
+\include{./TeX_files/Results}
+\include{./TeX_files/Discussion}
+
+%references:
+\begin{multicols}{2}
+	\setstretch{1.0}
+	\renewcommand*{\bibfont}{\footnotesize}
+	\printbibliography[heading=bibintoc] %bibintoc = shows references in table of contents
+\end{multicols}
+
+\include{./TeX_files/Appendix}
+
+\newpage
+\thispagestyle{empty}
+\includepdf{Graphix/backside}
+
+\end{document}
+
+
